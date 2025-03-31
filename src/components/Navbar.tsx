@@ -1,11 +1,12 @@
 
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "@/context/CartContext";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, Search, Menu, Sparkles } from "lucide-react";
+import { ShoppingBag, Search, Menu, User } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import SearchDialog from "@/components/SearchDialog";
+import { useUser, SignInButton, UserButton } from "@clerk/clerk-react";
 import {
   Sheet,
   SheetContent,
@@ -21,6 +22,14 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,6 +37,8 @@ const Navbar = () => {
   const { itemCount } = useCart();
   const location = useLocation();
   const mobile = useIsMobile();
+  const { isSignedIn, user, signOut } = useUser();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsMenuOpen(false);
@@ -108,12 +119,6 @@ const Navbar = () => {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link to="/ai-design" className="flex items-center px-4 py-2 text-sm font-medium">
-                    <Sparkles className="w-4 h-4 mr-2" />
-                    AI Design
-                  </Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
                   <Link to="/about" className="flex items-center px-4 py-2 text-sm font-medium">
                     About
                   </Link>
@@ -127,11 +132,44 @@ const Navbar = () => {
             </NavigationMenu>
           </div>
 
-          {/* Search and Cart */}
+          {/* Search, User and Cart */}
           <div className="flex items-center space-x-4">
             <Button variant="ghost" size="icon" className="hidden md:flex" onClick={() => setSearchOpen(true)}>
               <Search className="h-5 w-5" />
             </Button>
+            
+            {isSignedIn ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="rounded-full h-8 w-8 p-0 overflow-hidden">
+                    <img src={user?.imageUrl} alt={user?.fullName || "User"} className="h-full w-full object-cover" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => navigate("/profile")}>
+                    Profile
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate("/cart")}>
+                    My Cart
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate("/orders")}>
+                    Orders
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => signOut()}>
+                    Sign out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <SignInButton mode="modal">
+                <Button variant="ghost" size="icon">
+                  <User className="h-5 w-5" />
+                </Button>
+              </SignInButton>
+            )}
             
             <Button variant="ghost" size="icon" asChild className="relative">
               <Link to="/cart">
@@ -171,10 +209,6 @@ const Navbar = () => {
                   <Link to="/category/slippers" className="py-2 hover:text-primary">
                     Slippers
                   </Link>
-                  <Link to="/ai-design" className="py-2 hover:text-primary flex items-center">
-                    <Sparkles className="w-4 h-4 mr-2" />
-                    AI Design
-                  </Link>
                   <Link to="/about" className="py-2 hover:text-primary">
                     About
                   </Link>
@@ -184,6 +218,26 @@ const Navbar = () => {
                   <Link to="/cart" className="py-2 hover:text-primary">
                     Cart ({itemCount})
                   </Link>
+                  {isSignedIn ? (
+                    <>
+                      <div className="flex items-center space-x-2 py-2">
+                        <div className="h-8 w-8 rounded-full overflow-hidden">
+                          <img src={user?.imageUrl} alt={user?.fullName || "User"} className="h-full w-full object-cover" />
+                        </div>
+                        <div className="text-sm font-medium">{user?.fullName}</div>
+                      </div>
+                      <Link to="/profile" className="py-2 hover:text-primary">
+                        My Profile
+                      </Link>
+                      <Button variant="outline" onClick={() => signOut()}>
+                        Sign Out
+                      </Button>
+                    </>
+                  ) : (
+                    <Button variant="outline" onClick={() => navigate("/sign-in")}>
+                      Sign In
+                    </Button>
+                  )}
                 </div>
               </SheetContent>
             </Sheet>
