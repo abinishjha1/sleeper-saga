@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { Google, Facebook } from "lucide-react";
+import { Mail, Lock, LogIn } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -111,11 +111,11 @@ const SignIn = () => {
             
             <div className="grid grid-cols-2 gap-4">
               <Button variant="outline" onClick={() => signInWithSocial("oauth_google")} type="button">
-                <Google className="mr-2 h-4 w-4" />
+                <Mail className="mr-2 h-4 w-4" />
                 Google
               </Button>
               <Button variant="outline" onClick={() => signInWithSocial("oauth_facebook")} type="button">
-                <Facebook className="mr-2 h-4 w-4" />
+                <LogIn className="mr-2 h-4 w-4" />
                 Facebook
               </Button>
             </div>

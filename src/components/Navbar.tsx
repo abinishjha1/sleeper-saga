@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "@/context/CartContext";
@@ -6,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ShoppingBag, Search, Menu, User } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import SearchDialog from "@/components/SearchDialog";
-import { useUser, SignInButton, UserButton } from "@clerk/clerk-react";
+import { useUser, SignInButton, UserButton, useClerk } from "@clerk/clerk-react";
 import {
   Sheet,
   SheetContent,
@@ -37,7 +36,8 @@ const Navbar = () => {
   const { itemCount } = useCart();
   const location = useLocation();
   const mobile = useIsMobile();
-  const { isSignedIn, user, signOut } = useUser();
+  const { isSignedIn, user } = useUser();
+  const { signOut } = useClerk();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -48,12 +48,10 @@ const Navbar = () => {
     <header className="fixed top-0 left-0 right-0 bg-background/80 backdrop-blur-md z-50 border-b">
       <div className="container-custom py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
           <Link to="/" className="font-bold text-2xl">
             FootWonder
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:block">
             <NavigationMenu>
               <NavigationMenuList>
@@ -132,7 +130,6 @@ const Navbar = () => {
             </NavigationMenu>
           </div>
 
-          {/* Search, User and Cart */}
           <div className="flex items-center space-x-4">
             <Button variant="ghost" size="icon" className="hidden md:flex" onClick={() => setSearchOpen(true)}>
               <Search className="h-5 w-5" />
@@ -182,7 +179,6 @@ const Navbar = () => {
               </Link>
             </Button>
             
-            {/* Mobile menu button */}
             <Sheet>
               <SheetTrigger asChild className="md:hidden">
                 <Button variant="ghost" size="icon">
@@ -245,7 +241,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Search Dialog */}
       <SearchDialog 
         open={searchOpen} 
         onOpenChange={setSearchOpen} 
