@@ -1,11 +1,10 @@
-
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useCart } from "@/context/CartContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ShoppingBag, Search, Menu, X, Sparkles } from "lucide-react";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useMobile } from "@/hooks/use-mobile";
 import {
   Sheet,
   SheetContent,
@@ -24,9 +23,9 @@ import {
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { itemCount } = useCart();
+  const { totalItems } = useCart();
   const location = useLocation();
-  const mobile = useIsMobile();
+  const mobile = useMobile();
 
   useEffect(() => {
     setIsMenuOpen(false);
@@ -135,9 +134,9 @@ const Navbar = () => {
             <Button variant="ghost" size="icon" asChild className="relative">
               <Link to="/cart">
                 <ShoppingBag className="h-5 w-5" />
-                {itemCount > 0 && (
+                {totalItems > 0 && (
                   <span className="absolute top-0 right-0 -mt-1 -mr-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
-                    {itemCount}
+                    {totalItems}
                   </span>
                 )}
               </Link>
@@ -175,7 +174,7 @@ const Navbar = () => {
                     Contact
                   </Link>
                   <Link to="/cart" className="py-2 hover:text-primary">
-                    Cart ({itemCount})
+                    Cart ({totalItems})
                   </Link>
                 </div>
               </SheetContent>
