@@ -45,6 +45,15 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
   const increaseQuantity = () => setQuantity(prev => prev + 1);
   const decreaseQuantity = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1));
 
+  const getImageUrl = (imagePath: string) => {
+    // Handle both image paths starting with 'public/' and others
+    if (imagePath.startsWith('public/')) {
+      // Remove 'public/' prefix for proper display
+      return imagePath.replace('public/', '/');
+    }
+    return imagePath;
+  };
+
   return (
     <div className="container-custom py-12">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
@@ -52,7 +61,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
         <div className="space-y-4">
           <div className="aspect-square bg-secondary/30 rounded-lg overflow-hidden">
             <img
-              src={product.images[activeImage] || product.image}
+              src={getImageUrl(product.images[activeImage] || product.image)}
               alt={product.name}
               className="object-cover w-full h-full"
             />
@@ -67,7 +76,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
                 }`}
               >
                 <img
-                  src={image}
+                  src={getImageUrl(image)}
                   alt={`${product.name} thumbnail ${index + 1}`}
                   className="object-cover w-full h-full"
                 />

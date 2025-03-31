@@ -12,6 +12,7 @@ import {
   getNewArrivals, 
   getProductsByCategory 
 } from "@/data/products";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const Index = () => {
   const [productTab, setProductTab] = useState("featured");
@@ -64,7 +65,7 @@ const Index = () => {
               <div className="relative rounded-xl overflow-hidden group">
                 <div className="aspect-[4/3] bg-secondary">
                   <img 
-                    src="/placeholder.svg" 
+                    src="/lovable-uploads/bcb87fc8-06c8-4949-ab4a-50577021d94d.png" 
                     alt="Shoes Category" 
                     className="w-full h-full object-cover"
                   />
@@ -87,7 +88,7 @@ const Index = () => {
               <div className="relative rounded-xl overflow-hidden group">
                 <div className="aspect-[4/3] bg-secondary">
                   <img 
-                    src="/placeholder.svg" 
+                    src="/lovable-uploads/2c657444-2540-47b8-bc02-4590663285ab.png" 
                     alt="Slippers Category" 
                     className="w-full h-full object-cover"
                   />

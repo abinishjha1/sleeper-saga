@@ -48,7 +48,7 @@ const Hero = () => {
             <div className="relative h-[350px] md:h-[450px] w-full bg-secondary rounded-xl overflow-hidden animate-fade-in">
               <div className="absolute inset-0 flex items-center justify-center">
                 <img 
-                  src="/placeholder.svg" 
+                  src="/lovable-uploads/aba4a12b-e8a9-4c23-b59d-2ef2bdfa6019.png" 
                   alt="Featured product" 
                   className="object-cover w-full h-full"
                 />

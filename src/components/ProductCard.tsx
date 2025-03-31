@@ -20,13 +20,22 @@ const ProductCard = ({ product }: ProductCardProps) => {
     addItem(product, product.sizes[0], product.colors[0]);
   };
 
+  const getImageUrl = (imagePath: string) => {
+    // Handle both image paths starting with 'public/' and others
+    if (imagePath.startsWith('public/')) {
+      // Remove 'public/' prefix for proper display
+      return imagePath.replace('public/', '/');
+    }
+    return imagePath;
+  };
+
   return (
     <Link to={`/product/${product.id}`} className="group">
       <div className="relative overflow-hidden rounded-lg bg-background product-card-shadow">
         {/* Product Image */}
         <div className="aspect-square relative overflow-hidden bg-secondary/30">
           <img
-            src={product.image}
+            src={getImageUrl(product.image)}
             alt={product.name}
             className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
           />
