@@ -5,6 +5,7 @@ import ProductCard from "@/components/ProductCard";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { GridIcon, LayoutGridIcon } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 interface ProductGridProps {
   products: ProductType[];
@@ -83,7 +84,7 @@ const ProductGrid = ({ products, title, showFilters = false }: ProductGridProps)
           </div>
         )}
 
-        {/* Products grid */}
+        {/* Products display */}
         {viewType === "grid" ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {sortedProducts.map((product) => (

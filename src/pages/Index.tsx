@@ -39,18 +39,18 @@ const Index = () => {
                   <TabsTrigger value="bestsellers">Best Sellers</TabsTrigger>
                   <TabsTrigger value="new">New Arrivals</TabsTrigger>
                 </TabsList>
+              
+                <TabsContent value="featured" className="mt-6">
+                  <ProductGrid products={featuredProducts} />
+                </TabsContent>
+                <TabsContent value="bestsellers" className="mt-6">
+                  <ProductGrid products={bestSellers} />
+                </TabsContent>
+                <TabsContent value="new" className="mt-6">
+                  <ProductGrid products={newArrivals} />
+                </TabsContent>
               </Tabs>
             </div>
-            
-            <TabsContent value="featured" className="mt-6">
-              <ProductGrid products={featuredProducts} />
-            </TabsContent>
-            <TabsContent value="bestsellers" className="mt-6">
-              <ProductGrid products={bestSellers} />
-            </TabsContent>
-            <TabsContent value="new" className="mt-6">
-              <ProductGrid products={newArrivals} />
-            </TabsContent>
           </div>
         </section>
         

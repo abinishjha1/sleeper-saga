@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { ProductType, getRelatedProducts } from "@/data/products";
 import { useCart } from "@/context/CartContext";
