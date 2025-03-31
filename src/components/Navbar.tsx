@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useCart } from "@/context/CartContext";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { ShoppingBag, Search, Menu, X, Sparkles } from "lucide-react";
+import { ShoppingBag, Search, Menu, Sparkles } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import SearchDialog from "@/components/SearchDialog";
 import {
   Sheet,
   SheetContent,
@@ -24,6 +24,7 @@ import {
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const { itemCount } = useCart();
   const location = useLocation();
   const mobile = useIsMobile();
@@ -128,7 +129,7 @@ const Navbar = () => {
 
           {/* Search and Cart */}
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="icon" className="hidden md:flex">
+            <Button variant="ghost" size="icon" className="hidden md:flex" onClick={() => setSearchOpen(true)}>
               <Search className="h-5 w-5" />
             </Button>
             
@@ -155,6 +156,12 @@ const Navbar = () => {
                   <SheetTitle>Menu</SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col space-y-4">
+                  <Button variant="ghost" className="justify-start px-2 -ml-2" onClick={() => {
+                    setSearchOpen(true);
+                  }}>
+                    <Search className="mr-2 h-4 w-4" />
+                    Search
+                  </Button>
                   <Link to="/" className="py-2 hover:text-primary">
                     Home
                   </Link>
@@ -183,6 +190,12 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+
+      {/* Search Dialog */}
+      <SearchDialog 
+        open={searchOpen} 
+        onOpenChange={setSearchOpen} 
+      />
     </header>
   );
 };

@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { ProductType, getRelatedProducts } from "@/data/products";
 import { useCart } from "@/context/CartContext";
@@ -87,6 +88,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
           </div>
           
           <h1 className="text-3xl font-bold">{product.name}</h1>
+          <p className="text-lg font-medium mt-1">{product.brand}</p>
           <p className="text-2xl font-semibold mt-2">${product.price.toFixed(2)}</p>
           <p className="text-sm text-muted-foreground mt-1 capitalize">{product.category} / {product.subCategory}</p>
           
@@ -202,6 +204,10 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
               </TabsList>
               <TabsContent value="details" className="mt-4">
                 <div className="space-y-2">
+                  <div className="grid grid-cols-2 py-1 border-b">
+                    <span className="text-muted-foreground">Brand</span>
+                    <span>{product.brand}</span>
+                  </div>
                   <div className="grid grid-cols-2 py-1 border-b">
                     <span className="text-muted-foreground">Material</span>
                     <span>Premium Synthetic</span>
