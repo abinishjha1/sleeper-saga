@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
 import NotFound from "./pages/NotFound";
+import AiDesignPage from "./pages/AiDesignPage";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/ai-design" element={<AiDesignPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
