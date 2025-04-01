@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { toast } from "sonner";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Lock } from "lucide-react";
 
 const VerifyEmail = () => {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -39,30 +40,39 @@ const VerifyEmail = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-brand-50 to-background">
       <Navbar />
-      <main className="flex-1 flex items-center justify-center py-20">
-        <Card className="w-full max-w-md">
-          <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl font-bold">Verify your email</CardTitle>
-            <CardDescription>Enter the verification code sent to your email</CardDescription>
+      <main className="flex-1 flex items-center justify-center py-12">
+        <Card className="w-full max-w-md shadow-lg border-brand-100">
+          <CardHeader className="space-y-1 text-center">
+            <CardTitle className="text-3xl font-bold text-brand-800">Verify your email</CardTitle>
+            <CardDescription className="text-muted-foreground">Enter the verification code sent to your email</CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="space-y-4">
             <form onSubmit={handleVerify} className="space-y-4">
-              <Input 
-                placeholder="Verification code" 
-                value={code}
-                onChange={(e) => setCode(e.target.value)}
-                required
-              />
-              <Button type="submit" className="w-full" disabled={isVerifying}>
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground h-5 w-5" />
+                <Input 
+                  placeholder="Verification code" 
+                  value={code}
+                  onChange={(e) => setCode(e.target.value)}
+                  className="pl-10 border-brand-200 focus-visible:ring-brand-500"
+                  required
+                />
+              </div>
+              <Button 
+                type="submit" 
+                className="w-full bg-gradient-to-r from-brand-600 to-brand-800 hover:from-brand-700 hover:to-brand-900 text-white shadow-md" 
+                disabled={isVerifying}
+              >
                 {isVerifying ? "Verifying..." : "Verify email"}
               </Button>
             </form>
           </CardContent>
-          <CardFooter className="flex flex-col items-center justify-center space-y-2">
+          <CardFooter className="flex flex-col items-center justify-center space-y-2 pb-6">
             <Button 
               variant="link" 
+              className="text-brand-600 hover:text-brand-800"
               onClick={async () => {
                 if (!isLoaded) return;
                 try {
