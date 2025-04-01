@@ -30,15 +30,15 @@ const Index = () => {
         <Hero />
         
         {/* Featured Products */}
-        <section className="py-12 bg-secondary/50">
+        <section className="py-12 bg-gradient-to-r from-secondary/30 to-brand-100/30">
           <div className="container-custom">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
-              <h2 className="text-3xl font-bold">Our Collection</h2>
+              <h2 className="text-3xl font-bold text-brand-800">Our Collection</h2>
               <Tabs value={productTab} onValueChange={setProductTab}>
-                <TabsList>
-                  <TabsTrigger value="featured">Featured</TabsTrigger>
-                  <TabsTrigger value="bestsellers">Best Sellers</TabsTrigger>
-                  <TabsTrigger value="new">New Arrivals</TabsTrigger>
+                <TabsList className="bg-brand-50">
+                  <TabsTrigger value="featured" className="data-[state=active]:bg-brand-600 data-[state=active]:text-white">Featured</TabsTrigger>
+                  <TabsTrigger value="bestsellers" className="data-[state=active]:bg-brand-600 data-[state=active]:text-white">Best Sellers</TabsTrigger>
+                  <TabsTrigger value="new" className="data-[state=active]:bg-brand-600 data-[state=active]:text-white">New Arrivals</TabsTrigger>
                 </TabsList>
               
                 <TabsContent value="featured" className="mt-6">
@@ -56,18 +56,18 @@ const Index = () => {
         </section>
         
         {/* Categories */}
-        <section className="py-16">
+        <section className="py-16 bg-gradient-to-b from-white to-brand-50">
           <div className="container-custom">
-            <h2 className="text-3xl font-bold mb-12 text-center">Shop by Category</h2>
+            <h2 className="text-3xl font-bold mb-12 text-center text-brand-800">Shop by Category</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Shoes Category */}
-              <div className="relative rounded-xl overflow-hidden group">
+              <div className="relative rounded-xl overflow-hidden group shadow-lg">
                 <div className="aspect-[4/3] bg-secondary">
                   <img 
                     src="/lovable-uploads/bcb87fc8-06c8-4949-ab4a-50577021d94d.png" 
                     alt="Shoes Category" 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-6">
@@ -85,12 +85,12 @@ const Index = () => {
               </div>
               
               {/* Slippers Category */}
-              <div className="relative rounded-xl overflow-hidden group">
+              <div className="relative rounded-xl overflow-hidden group shadow-lg">
                 <div className="aspect-[4/3] bg-secondary">
                   <img 
                     src="/lovable-uploads/2c657444-2540-47b8-bc02-4590663285ab.png" 
                     alt="Slippers Category" 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-6">
@@ -111,7 +111,7 @@ const Index = () => {
         </section>
         
         {/* Newsletter */}
-        <section className="py-16 bg-primary text-primary-foreground">
+        <section className="py-16 bg-gradient-to-r from-brand-700 to-primary text-primary-foreground">
           <div className="container-custom">
             <div className="max-w-2xl mx-auto text-center">
               <h2 className="text-3xl font-bold mb-4">Join Our Newsletter</h2>
@@ -124,7 +124,7 @@ const Index = () => {
                   placeholder="Your email address" 
                   className="flex-1 px-4 py-2 rounded-md border-0 bg-white/10 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/50"
                 />
-                <button className="px-6 py-2 rounded-md bg-white text-primary font-medium hover:bg-white/90 transition-colors">
+                <button className="px-6 py-2 rounded-md bg-white text-brand-800 font-medium hover:bg-white/90 transition-colors">
                   Subscribe
                 </button>
               </div>

@@ -31,7 +31,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <Link to={`/product/${product.id}`} className="group">
-      <div className="relative overflow-hidden rounded-lg bg-background product-card-shadow">
+      <div className="relative overflow-hidden rounded-lg bg-background product-card-shadow hover:shadow-lg transition-shadow duration-300">
         {/* Product Image */}
         <div className="aspect-square relative overflow-hidden bg-secondary/30">
           <img
@@ -53,11 +53,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
           {/* Action buttons overlay */}
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
             <div className="flex gap-2">
-              <Button size="sm" variant="secondary" className="rounded-full" onClick={handleQuickAdd}>
+              <Button size="sm" variant="secondary" className="rounded-full shadow-md hover:shadow-lg" onClick={handleQuickAdd}>
                 <ShoppingBag className="h-4 w-4 mr-1" />
                 Quick Add
               </Button>
-              <Button size="sm" variant="secondary" className="rounded-full" asChild>
+              <Button size="sm" variant="secondary" className="rounded-full shadow-md hover:shadow-lg" asChild>
                 <Link to={`/product/${product.id}`}>
                   <Eye className="h-4 w-4 mr-1" />
                   View
