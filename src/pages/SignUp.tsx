@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useSignUp } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
@@ -25,7 +24,6 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check password match when either password or confirmPassword changes
     if (confirmPassword) {
       setPasswordMatch(password === confirmPassword);
     } else {
@@ -97,7 +95,7 @@ const SignUp = () => {
           <div className="hidden md:flex flex-col justify-center items-center">
             <div className="relative h-[600px] w-full rounded-xl overflow-hidden shadow-xl">
               <img 
-                src="/lovable-uploads/photo-1581091226825-a6a2a5aee158.jpg" 
+                src="/lovable-uploads/126c650b-f67f-4759-8dcc-0d9a66bf04ea.png" 
                 alt="Sign up" 
                 className="object-cover w-full h-full"
               />
